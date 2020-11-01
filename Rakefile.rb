@@ -4,7 +4,7 @@ append_to_file "Rakefile" do
   begin
     require "rubocop/rake_task"
     RuboCop::RakeTask.new
-    task default: %w[test test:system rubocop]
+    task default: %w[rubocop]
   rescue LoadError # rubocop:disable Lint/HandleExceptions
   end
   RUBY
