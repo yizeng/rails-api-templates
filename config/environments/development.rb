@@ -30,3 +30,16 @@ gsub_file "config/environments/development.rb",
           "config.cache_store = :memory_store",
           'config.cache_store = :redis_cache_store, { url: ENV.fetch("REDIS_URL_CACHING") { "redis://localhost:6379/0" } }'
 
+insert_into_file "config/environments/development.rb", before: /^end/ do
+  <<-RUBY
+
+  # Config bullet gem.
+  config.after_initialize do
+    Bullet.enable        = true
+    Bullet.alert         = true
+    Bullet.bullet_logger = true
+    Bullet.console       = true
+    Bullet.rails_logger  = true
+  end
+  RUBY
+end
