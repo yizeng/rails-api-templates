@@ -12,14 +12,10 @@ insert_into_file "config/environments/development.rb", after: mailer_regex do
   RUBY
 end
 
-insert_into_file "config/environments/development.rb", before: /^end/ do
-  <<-RUBY
-
-  # Automatically inject JavaScript needed for LiveReload.
-  config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
-  RUBY
-end
-
 gsub_file "config/environments/development.rb",
           "join('tmp', 'caching-dev.txt')",
           'join("tmp/caching-dev.txt")'
+gsub_file "config/environments/development.rb",
+          "config.cache_store = :memory_store",
+          'config.cache_store = :redis_cache_store, { url: ENV.fetch("REDIS_URL_CACHING") { "redis://localhost:6379/0" } }'
+
