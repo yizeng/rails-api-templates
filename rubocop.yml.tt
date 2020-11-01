@@ -1,6 +1,7 @@
 require:
   - rubocop-performance
   - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   DisplayCopNames: true
@@ -10,6 +11,7 @@ AllCops:
     - "bin/*"
     - config/initializers/version.rb
     - db/schema.rb
+    - lib/tasks/auto_annotate_models.rake
     - "node_modules/**/*"
     - "bower_components/**/*"
     - "tmp/**/*"
@@ -17,28 +19,28 @@ AllCops:
     - Gemfile
     - Guardfile
     - Rakefile
+  RSpec:
+    Patterns:
+      - '(?:^|/)spec/(?!integration)'
 
 Layout/LineLength:
   Max: 120
 
 Lint/AmbiguousBlockAssociation:
   Exclude:
-    - "test/**/*"
+    - spec/**/*
 
 Metrics/ModuleLength:
   Exclude:
+    - spec/**/*
 Metrics/BlockLength:
   Exclude:
     - config/environments/*.rb
-    - "test/**/*"
+    - spec/**/*
 Metrics/MethodLength:
   Max: 25
 Metrics/AbcSize:
   Max: 25
-
-Naming/FileName:
-  Exclude:
-    - "db/migrate/**"
 
 Style/Documentation:
   Enabled: false
@@ -54,12 +56,19 @@ Rails/UnknownEnv:
     - development
     - test
 
-Style/EmptyMethod:
+RSpec/ContextWording:
+  Prefixes:
+    - when
+    - with
+    - without
+    - for
+RSpec/ExampleLength:
+  Max: 25
+RSpec/MultipleExpectations:
+  Max: 20
+RSpec/NamedSubject:
   Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
+RSpec/NestedGroups:
+  Max: 5
+RSpec/VerifiedDoubles:
   Enabled: false
