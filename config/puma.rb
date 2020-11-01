@@ -42,3 +42,5 @@ end
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+
+raise_exception_on_sigterm false

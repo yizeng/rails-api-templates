@@ -1,10 +1,25 @@
-require "sidekiq/web"
+require "sidekiq_unique_jobs/web" # this includes "sidekiq/web" already.
+require "sidekiq-scheduler/web"
 
-sidekiq_username = ENV.fetch("SIDEKIQ_WEB_USERNAME")
-sidekiq_password = ENV.fetch("SIDEKIQ_WEB_PASSWORD")
+Sidekiq.configure_server do |config|
+  config.redis = { url: ENV.fetch("REDIS_URL_SIDEKIQ") { "redis://localhost:6379/1" } }
+  config.death_handlers << lambda { |job, _ex|
+    digest = job["unique_digest"]
+    SidekiqUniqueJobs::Digests.delete_by_digest(digest) if digest
+  }
+end
 
-Sidekiq::Web.app_url = "/"
-Sidekiq::Web.use(Rack::Auth::Basic, "Application") do |username, password|
-  username == sidekiq_username &&
-    ActiveSupport::SecurityUtils.secure_compare(password, sidekiq_password)
+Sidekiq.configure_client do |config|
+  config.redis = { url: ENV.fetch("REDIS_URL_SIDEKIQ") { "redis://localhost:6379/1" } }
+end
+
+sidekiq_username = ENV["SIDEKIQ_WEB_USERNAME"]
+sidekiq_password = ENV["SIDEKIQ_WEB_PASSWORD"]
+
+if sidekiq_username && sidekiq_password
+  Sidekiq::Web.app_url = "/"
+  Sidekiq::Web.use(Rack::Auth::Basic, "Application") do |username, password|
+    username == sidekiq_username &&
+      ActiveSupport::SecurityUtils.secure_compare(password, sidekiq_password)
+  end
 end
