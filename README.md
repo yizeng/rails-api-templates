@@ -33,3 +33,7 @@ rails new -d postgresql --api -T -m https://gitlab.com/yi.zeng/rails-api-templat
 ## What's in additional to mattbrictson/rails-template?
 
 * Rails API Only + Many other changes
+* Docker
+  - .dockerignore
+  - docker-composer.yml
+  - Dockerfile

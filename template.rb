@@ -23,6 +23,9 @@ def apply_template!
   template "ruby-version.tt", ".ruby-version", force: true
 
   copy_file "Procfile"
+  copy_file ".dockerignore"
+  copy_file "docker-compose.yml"
+  template  "Dockerfile.tt"
 
   apply "config.ru.rb"
   apply "app/template.rb"
