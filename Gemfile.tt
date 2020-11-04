@@ -49,6 +49,7 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # EXTRA GEMS ADDED TO THIS PROJECT #
 # ================================ #
 gem "discard", "~> 1.2" # Soft deletes for ActiveRecord done right
+gem "graphql" # Ruby implementation of GraphQL
 gem "redis" <%= gemfile_requirement("redis") %> # A Ruby client library for Redis
 
 gem "sidekiq" # Simple, efficient background processing for Ruby

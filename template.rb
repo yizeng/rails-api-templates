@@ -44,6 +44,8 @@ def apply_template!
   run  "bin/rails generate rspec:install"
   apply "spec/template.rb"
 
+  run "bin/rails generate graphql:install"
+
   template "rubocop.yml.tt", ".rubocop.yml"
   run_rubocop_autocorrections
 
