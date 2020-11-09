@@ -3,7 +3,7 @@ require "json"
 
 RAILS_REQUIREMENT = "~> 6.0.0".freeze
 TEMPLATE_REPO = "https://gitlab.com/yi.zeng/rails-api-templates.git".freeze
-BRANCH = 'main'.freeze
+BRANCH = 'graphql'.freeze
 
 def apply_template!
   assert_minimum_rails_version
