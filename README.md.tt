@@ -15,6 +15,12 @@ This project requires:
 * [Redis][] must be installed and running on localhost with the default port
 * [Docker][] support is provided but not required or enabled by default
 
+## Getting started
+
+### Scaffold the API
+
+<https://johncorderox.com/2019/scaffold-a-new-rails-5-api/>
+
 [Docker]:https://www.docker.com/
 [redis]:http://redis.io
 [Homebrew]:http://brew.sh
