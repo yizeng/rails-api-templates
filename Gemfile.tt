@@ -51,6 +51,12 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "discard", "~> 1.2" # Soft deletes for ActiveRecord done right
 gem "redis" <%= gemfile_requirement("redis") %> # A Ruby client library for Redis
 
+gem "rswag-api" # Seamlessly adds a Swagger to Rails-based API's.
+gem "rswag-ui"
+
+gem "kaminari" # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps
+gem "api-pagination" # Link header pagination for Rails and Grape APIs.
+
 gem "sidekiq" # Simple, efficient background processing for Ruby
 gem "sidekiq-scheduler" # Lightweight job scheduler extension for Sidekiq
 gem "sidekiq-unique-jobs", "~> 7.0.0.beta15" # Ensure uniqueness of your Sidekiq jobs
@@ -65,6 +71,7 @@ group :development, :test do
   gem "factory_bot_rails" # Factory Bot loves Rails
   gem "faker" # A library for generating fake data such as names, addresses, and phone numbers.
   gem "rspec-rails", "~> 4.0.0"
+  gem "rswag-specs"
 end
 
 group :development do
