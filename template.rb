@@ -45,6 +45,9 @@ def apply_template!
   run_with_clean_bundler_env "bundle binstubs #{binstubs.join(' ')} --force"
 
   run  "bin/rails generate rspec:install"
+  run  "bin/rails generate rswag:api:install"
+  run  "bin/rails generate rswag:ui:install"
+  run  "RAILS_ENV=test bin/rails generate rswag:specs:install"
   apply "spec/template.rb"
 
   template "overcommit.yml.tt", ".overcommit.yml"

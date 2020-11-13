@@ -67,3 +67,12 @@ insert_into_file "spec/spec_helper.rb", before: /^RSpec.configure/ do
 
   RUBY
 end
+
+gsub_file "config/initializers/rswag-ui.rb", /API/ do
+  "#{app_name.humanize.titleize.gsub(/Api/, 'API')}" if app_name.downcase.include?("api")
+end
+
+gsub_file "spec/swagger_helper.rb", /API V1/ do
+  "#{app_name.humanize.titleize.gsub(/Api/, 'API')}" if app_name.downcase.include?("api")
+end
+
