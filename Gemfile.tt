@@ -80,11 +80,13 @@ end
 
 group :test do
   gem "fuubar" # The instafailing RSpec progress bar formatter.
-  gem "rspec-sidekiq" # RSpec for Sidekiq
   gem "shoulda-matchers" # Simple one-liner tests for common Rails functionality
   gem "timecop" # A gem providing "time travel", "time freezing", and "time acceleration" capabilities
 
-  gem "codecov", require: false
+  gem "rspec-sidekiq" # RSpec for Sidekiq
+  gem "rspec_junit_formatter" # RSpec results that your CI can read
+
   gem "simplecov", require: false # Code coverage for Ruby 1.9+
+  gem 'simplecov-cobertura', require: false # Ruby SimpleCov Cobertura Formatter
 end
 

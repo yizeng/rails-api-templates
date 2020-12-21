@@ -46,6 +46,7 @@ end
 insert_into_file "spec/spec_helper.rb", before: /^RSpec.configure/ do
   <<-RUBY
   require "simplecov"
+  require "simplecov-cobertura"
 
   SimpleCov.start "rails" do
     add_filter do |source_file|
@@ -57,9 +58,12 @@ insert_into_file "spec/spec_helper.rb", before: /^RSpec.configure/ do
     add_group("Services", "app/services")
   end
 
-  require "codecov"
-
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov if ENV["CODECOV_TOKEN"]
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+    [
+      SimpleCov::Formatter::HTMLFormatter,
+      SimpleCov::Formatter::CoberturaFormatter
+    ]
+  )
 
   RUBY
 end
