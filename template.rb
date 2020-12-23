@@ -27,6 +27,7 @@ def apply_template!
   copy_file "docker-compose.yml"
   template  "Dockerfile.tt"
 
+  apply "Rakefile.rb"
   apply "config.ru.rb"
   apply "app/template.rb"
   apply "bin/template.rb"

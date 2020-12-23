@@ -27,6 +27,9 @@ Layout/LineLength:
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - spec/**/*
+Lint/MissingSuper:
+  Exclude:
+    - app/services/**/*
 
 Metrics/ModuleLength:
   Exclude:
@@ -34,12 +37,12 @@ Metrics/ModuleLength:
 Metrics/BlockLength:
   Exclude:
     - config/environments/*.rb
-    - db/migrate/**/*
+    - db/migrate/*.rb
     - spec/**/*
 Metrics/MethodLength:
   Max: 25
   Exclude:
-    - db/migrate/**/*
+    - db/migrate/*.rb
 Metrics/AbcSize:
   Max: 25
   Exclude:
