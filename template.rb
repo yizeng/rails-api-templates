@@ -47,6 +47,7 @@ def apply_template!
   run  "bin/rails generate rspec:install"
   apply "spec/template.rb"
 
+  template "overcommit.yml.tt", ".overcommit.yml"
   template "rubocop.yml.tt", ".rubocop.yml"
   run_rubocop_autocorrections
 

@@ -70,6 +70,7 @@ end
 
 group :development do
   gem "annotate" # Annotate Rails classes with schema and routes info
+  gem "overcommit", require: false # A fully configurable and extendable Git hook manager
 
   # A Ruby static code analyzer and formatter, based on the community Ruby style guide.
   gem "rubocop", require: false
