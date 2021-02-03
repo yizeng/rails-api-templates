@@ -24,7 +24,10 @@ def apply_template!
 
   copy_file "LICENSE"
   copy_file "Procfile"
+  copy_file "Procfile.local"
+  copy_file "Procfile.workers"
 
+  apply "Rakefile.rb"
   apply "config.ru.rb"
   apply "app/template.rb"
   apply "bin/template.rb"
@@ -38,9 +41,13 @@ def apply_template!
   create_initial_migration
   generate_spring_binstubs
 
-  binstubs = %w[bundler rubocop]
+  binstubs = %w[annotate bundler rubocop sidekiq]
   run_with_clean_bundler_env "bundle binstubs #{binstubs.join(' ')} --force"
 
+  run  "bin/rails generate rspec:install"
+  apply "spec/template.rb"
+
+  template "overcommit.yml.tt", ".overcommit.yml"
   template "rubocop.yml.tt", ".rubocop.yml"
   run_rubocop_autocorrections
 

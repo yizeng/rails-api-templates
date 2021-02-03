@@ -1,6 +1,7 @@
 require:
   - rubocop-performance
   - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   DisplayCopNames: true
@@ -8,38 +9,44 @@ AllCops:
   TargetRubyVersion: <%= RUBY_VERSION[/\d+\.\d+/] %>
   NewCops: enable
   Exclude:
-    - "bin/*"
-    - config/initializers/version.rb
-    - db/schema.rb
-    - "node_modules/**/*"
-    - "bower_components/**/*"
-    - "tmp/**/*"
-    - "vendor/**/*"
     - Gemfile
     - Guardfile
     - Rakefile
+    - bin/*
+    - bower_components/**/*
+    - config/initializers/version.rb
+    - db/schema.rb
+    - lib/tasks/auto_annotate_models.rake
+    - node_modules/**/*
+    - tmp/**/*
+    - vendor/**/*
 
 Layout/LineLength:
   Max: 120
 
 Lint/AmbiguousBlockAssociation:
   Exclude:
-    - "test/**/*"
+    - spec/**/*
+Lint/MissingSuper:
+  Exclude:
+    - app/services/**/*
 
 Metrics/ModuleLength:
   Exclude:
+    - spec/**/*
 Metrics/BlockLength:
   Exclude:
     - config/environments/*.rb
-    - "test/**/*"
+    - db/migrate/*.rb
+    - spec/**/*
 Metrics/MethodLength:
   Max: 25
+  Exclude:
+    - db/migrate/*.rb
 Metrics/AbcSize:
   Max: 25
-
-Naming/FileName:
   Exclude:
-    - "db/migrate/**"
+    - db/migrate/*.rb
 
 Style/Documentation:
   Enabled: false
@@ -50,17 +57,27 @@ Style/StringLiterals:
 
 Rails/UnknownEnv:
   Environments:
+    - development
     - production
     - staging
-    - development
     - test
 
-Style/EmptyMethod:
+RSpec:
+  Include:
+    - '(?:^|/)spec/(?!integration)'
+RSpec/ContextWording:
+  Prefixes:
+    - for
+    - when
+    - with
+    - without
+RSpec/ExampleLength:
+  Max: 25
+RSpec/MultipleExpectations:
+  Max: 20
+RSpec/NamedSubject:
   Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
+RSpec/NestedGroups:
+  Max: 5
+RSpec/VerifiedDoubles:
   Enabled: false
