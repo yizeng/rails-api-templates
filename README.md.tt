@@ -14,5 +14,11 @@ This project requires:
 * [PostgreSQL][] must be installed and accepting connections
 * [Redis][] must be installed and running
 
+## Getting started
+
+### Scaffold the API
+
+<https://graphql-ruby.org/getting_started.html>
+
 [PostgreSQL]: https://www.postgresql.org/
 [redis]: http://redis.io
