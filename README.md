@@ -33,6 +33,10 @@ rails new -d postgresql --api -T -m https://gitlab.com/yi.zeng/rails-api-templat
 ## What's in additional to mattbrictson/rails-template?
 
 * Rails API Only + Many other changes
+  - Monitoring
+    - [airbrake](https://github.com/airbrake/airbrake)
+    - [logdna](https://github.com/logdna/ruby)
+    - [newrelic_rpm](https://github.com/newrelic/newrelic-ruby-agent)
   - Testing
     - [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails)
     - [faker](https://github.com/faker-ruby/faker)

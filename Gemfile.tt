@@ -48,6 +48,10 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # ================================ #
 # EXTRA GEMS ADDED TO THIS PROJECT #
 # ================================ #
+gem "airbrake" # The official Airbrake library for Ruby applications
+gem "logdna" # Ruby library for logging to LogDNA
+gem "newrelic_rpm" # New Relic RPM Ruby Agent
+
 gem "foreman" # Manage Procfile-based applications.
 
 group :development, :test do
