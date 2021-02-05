@@ -10,3 +10,14 @@ insert_into_file \
   config.action_mailer.asset_host = "http://localhost:#{ENV.fetch('PORT', 3000)}"
   RUBY
 end
+
+insert_into_file "config/environments/test.rb", before: /^end/ do
+  <<-RUBY
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.raise = true # raise an error if n+1 query occurs
+  end
+  RUBY
+end

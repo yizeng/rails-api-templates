@@ -1,6 +1,17 @@
 insert_into_file "spec/rails_helper.rb", after: "RSpec.configure do |config|\n" do
   <<-RUBY
 
+  if Bullet.enable?
+    config.before do
+      Bullet.start_request
+    end
+
+    config.after do
+      Bullet.perform_out_of_channel_notifications if Bullet.notification?
+      Bullet.end_request
+    end
+  end
+
   config.include FactoryBot::Syntax::Methods
 
   RUBY
