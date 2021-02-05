@@ -17,10 +17,15 @@ def apply_template!
   template "README.md.tt", force: true
   remove_file "README.rdoc"
 
+  copy_file "env.development", ".env.development", force: true
+  copy_file "env.production", ".env.production", force: true
+  copy_file "env.test", ".env.test", force: true
   copy_file "gitignore", ".gitignore", force: true
   template "ruby-version.tt", ".ruby-version", force: true
 
   copy_file "Procfile"
+  copy_file "Procfile.local"
+  copy_file "Procfile.workers"
 
   apply "Rakefile.rb"
   apply "config.ru.rb"

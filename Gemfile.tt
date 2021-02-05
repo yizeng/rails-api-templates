@@ -52,6 +52,7 @@ gem "airbrake" # The official Airbrake library for Ruby applications
 gem "logdna" # Ruby library for logging to LogDNA
 gem "newrelic_rpm" # New Relic RPM Ruby Agent
 
+gem "dotenv-rails" # A Ruby gem to load environment variables from `.env`.
 gem "foreman" # Manage Procfile-based applications.
 
 group :development, :test do

@@ -1,3 +1,2 @@
-web:     bundle exec puma -C config/puma.rb
-worker:  bundle exec sidekiq -C config/sidekiq.yml
-release: bundle exec rake db:migrate db:seed
+web:    bundle exec puma -e ${RAILS_ENV} -C config/puma.rb
+worker: bundle exec foreman start -f Procfile.workers

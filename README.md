@@ -33,6 +33,8 @@ rails new -d postgresql --api -T -m https://gitlab.com/yi.zeng/rails-api-templat
 ## What's in additional to mattbrictson/rails-template?
 
 * Rails API Only + Many other changes
+  - [dotenv-rails](https://github.com/bkeepers/dotenv)
+  - [foreman](https://github.com/ddollar/foreman)
   - Monitoring
     - [airbrake](https://github.com/airbrake/airbrake)
     - [logdna](https://github.com/logdna/ruby)
