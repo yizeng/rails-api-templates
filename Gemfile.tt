@@ -55,6 +55,11 @@ gem "newrelic_rpm" # New Relic RPM Ruby Agent
 gem "dotenv-rails" # A Ruby gem to load environment variables from `.env`.
 gem "foreman" # Manage Procfile-based applications.
 
+gem "sidekiq" # Simple, efficient background processing for Ruby
+gem "sidekiq-failures" # Keep track of Sidekiq failed jobs
+gem "sidekiq-scheduler" # Lightweight job scheduler extension for Sidekiq
+gem "sidekiq-unique-jobs", "~> 7.0.0.beta15" # Ensure uniqueness of your Sidekiq jobs
+
 group :development, :test do
   gem "bullet" # Help to kill N+1 queries and unused eager loading.
   gem "factory_bot_rails" # Factory Bot loves Rails
@@ -76,6 +81,8 @@ end
 group :test do
   gem "fuubar" # The instafailing RSpec progress bar formatter.
   gem "shoulda-matchers" # Simple one-liner tests for common Rails functionality
+
+  gem "rspec-sidekiq" # RSpec for Sidekiq
   gem "rspec_junit_formatter" # RSpec results that your CI can read
 
   gem "simplecov", require: false # Code coverage for Ruby 1.9+

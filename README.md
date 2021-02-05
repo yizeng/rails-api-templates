@@ -35,6 +35,10 @@ rails new -d postgresql --api -T -m https://gitlab.com/yi.zeng/rails-api-templat
 * Rails API Only + Many other changes
   - [dotenv-rails](https://github.com/bkeepers/dotenv)
   - [foreman](https://github.com/ddollar/foreman)
+  - [Sidekiq](https://github.com/mperham/sidekiqs)
+    - [sidekiq-failures](https://github.com/mhfs/sidekiq-failures)
+    - [sidekiq-scheduler](https://github.com/moove-it/sidekiq-scheduler)
+    - [sidekiq-unique-jobs](https://github.com/mhenrixon/sidekiq-unique-jobs)
   - Monitoring
     - [airbrake](https://github.com/airbrake/airbrake)
     - [logdna](https://github.com/logdna/ruby)
@@ -48,5 +52,6 @@ rails new -d postgresql --api -T -m https://gitlab.com/yi.zeng/rails-api-templat
     - [faker](https://github.com/faker-ruby/faker)
     - [fuubar](https://github.com/thekompanee/fuubar)
     - [rspec-rails](https://github.com/rspec/rspec-rails)
+    - [rspec-sidekiq](https://github.com/rspec/rspec-rails)
     - [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers)
     - [simplecov](https://github.com/simplecov-ruby/simplecov)
