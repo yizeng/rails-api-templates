@@ -6,7 +6,7 @@ insert_into_file \
 
   # Ensure mailer works in test
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: "localhost:3000" }
-  config.action_mailer.asset_host = "http://localhost:3000"
+  config.action_mailer.default_url_options = { host: "localhost:#{ENV.fetch('PORT', 3000)}" }
+  config.action_mailer.asset_host = "http://localhost:#{ENV.fetch('PORT', 3000)}"
   RUBY
 end

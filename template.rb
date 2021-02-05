@@ -1,6 +1,9 @@
 require "bundler"
 require "json"
+
 RAILS_REQUIREMENT = "~> 6.0.0".freeze
+TEMPLATE_REPO = "https://gitlab.com/yi.zeng/rails-api-templates.git".freeze
+BRANCH = 'main'.freeze
 
 def apply_template!
   assert_minimum_rails_version
@@ -10,52 +13,38 @@ def apply_template!
 
   template "Gemfile.tt", force: true
 
+  template "LICENSE.tt", force: true
   template "README.md.tt", force: true
   remove_file "README.rdoc"
 
-  template "example.env.tt"
-  copy_file "editorconfig", ".editorconfig"
   copy_file "gitignore", ".gitignore", force: true
-  copy_file "overcommit.yml", ".overcommit.yml"
   template "ruby-version.tt", ".ruby-version", force: true
 
-  copy_file "Guardfile"
   copy_file "Procfile"
 
   apply "Rakefile.rb"
   apply "config.ru.rb"
   apply "app/template.rb"
   apply "bin/template.rb"
-  apply "circleci/template.rb"
   apply "config/template.rb"
-  apply "doc/template.rb"
   apply "lib/template.rb"
-  apply "test/template.rb"
 
   git :init unless preexisting_git_repo?
   empty_directory ".git/safe"
 
   run_with_clean_bundler_env "bin/setup"
-  run_with_clean_bundler_env "bin/rails webpacker:install"
   create_initial_migration
   generate_spring_binstubs
 
-  binstubs = %w[
-    annotate brakeman bundler bundler-audit guard rubocop sidekiq
-    terminal-notifier
-  ]
+  binstubs = %w[bundler rubocop]
   run_with_clean_bundler_env "bundle binstubs #{binstubs.join(' ')} --force"
 
   template "rubocop.yml.tt", ".rubocop.yml"
   run_rubocop_autocorrections
 
-  template "eslintrc.js", ".eslintrc.js"
-  template "prettierrc.js", ".prettierrc.js"
-  add_eslint_and_run_fix
-
   unless any_local_git_commits?
     git add: "-A ."
-    git commit: "-n -m 'Set up project'"
+    git commit: "-n -m 'Create Project'  -m 'Using Template from #{TEMPLATE_REPO}. Branch: #{BRANCH}.'"
     if git_repo_specified?
       git remote: "add origin #{git_repo_url.shellescape}"
       git push: "-u origin --all"
@@ -73,17 +62,18 @@ require "shellwords"
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     require "tmpdir"
-    source_paths.unshift(tempdir = Dir.mktmpdir("rails-template-"))
+    source_paths.unshift(tempdir = Dir.mktmpdir("rails-api-templates-"))
     at_exit { FileUtils.remove_entry(tempdir) }
     git clone: [
       "--quiet",
-      "https://github.com/mattbrictson/rails-template.git",
+      "--single-branch",
+      "--branch",
+      BRANCH,
+      TEMPLATE_REPO,
       tempdir
     ].map(&:shellescape).join(" ")
 
-    if (branch = __FILE__[%r{rails-template/(.+)/template.rb}, 1])
-      Dir.chdir(tempdir) { git checkout: branch }
-    end
+    Dir.chdir(tempdir) { git checkout: BRANCH }
   else
     source_paths.unshift(File.dirname(__FILE__))
   end
@@ -105,9 +95,7 @@ def assert_valid_options
     skip_gemfile: false,
     skip_bundle: false,
     skip_git: false,
-    skip_system_test: false,
-    skip_test: false,
-    skip_test_unit: false,
+    skip_test: true,
     edge: false
   }
   valid_options.each do |key, expected|
@@ -175,39 +163,13 @@ def run_with_clean_bundler_env(cmd)
 end
 
 def run_rubocop_autocorrections
-  run_with_clean_bundler_env "bin/rubocop -a --fail-level A > /dev/null || true"
+  run_with_clean_bundler_env "bin/rubocop -A --fail-level A > /dev/null || true"
 end
 
 def create_initial_migration
   return if Dir["db/migrate/**/*.rb"].any?
   run_with_clean_bundler_env "bin/rails generate migration initial_migration"
   run_with_clean_bundler_env "bin/rake db:migrate"
-end
-
-def add_eslint_and_run_fix
-  packages = %w[
-    babel-eslint
-    eslint
-    eslint-config-prettier
-    eslint-plugin-jest
-    eslint-plugin-prettier prettier
-  ]
-  run_with_clean_bundler_env "yarn add #{packages.join(' ')} -D"
-  add_package_json_script(lint: "eslint 'app/javascript/**/*.{js,jsx}'")
-  run_with_clean_bundler_env "yarn lint --fix"
-end
-
-def add_package_json_script(scripts)
-  package_json = JSON.parse(IO.read("package.json"))
-  package_json["scripts"] ||= {}
-  scripts.each do |name, script|
-    package_json["scripts"][name.to_s] = script
-  end
-  package_json = {
-    "name" => package_json["name"],
-    "scripts" => package_json["scripts"].sort.to_h
-  }.merge(package_json)
-  IO.write("package.json", JSON.pretty_generate(package_json) + "\n")
 end
 
 apply_template!
