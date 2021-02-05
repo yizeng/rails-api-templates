@@ -40,6 +40,7 @@ rails new -d postgresql --api -T -m https://gitlab.com/yi.zeng/rails-api-templat
     - [logdna](https://github.com/logdna/ruby)
     - [newrelic_rpm](https://github.com/newrelic/newrelic-ruby-agent)
   - Development
+    - [annotate](https://github.com/ctran/annotate_models)
     - [bullet](https://github.com/flyerhzm/bullet)
   - Testing
     - [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails)

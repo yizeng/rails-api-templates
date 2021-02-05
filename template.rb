@@ -41,7 +41,7 @@ def apply_template!
   create_initial_migration
   generate_spring_binstubs
 
-  binstubs = %w[bundler rubocop]
+  binstubs = %w[annotate bundler rubocop]
   run_with_clean_bundler_env "bundle binstubs #{binstubs.join(' ')} --force"
 
   run_with_clean_bundler_env  "bin/rails generate rspec:install"
