@@ -33,3 +33,10 @@ rails new -d postgresql --api -T -m https://gitlab.com/yi.zeng/rails-api-templat
 ## What's in additional to mattbrictson/rails-template?
 
 * Rails API Only + Many other changes
+  - Testing
+    - [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails)
+    - [faker](https://github.com/faker-ruby/faker)
+    - [fuubar](https://github.com/thekompanee/fuubar)
+    - [rspec-rails](https://github.com/rspec/rspec-rails)
+    - [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers)
+    - [simplecov](https://github.com/simplecov-ruby/simplecov)

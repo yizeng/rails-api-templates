@@ -50,9 +50,25 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # ================================ #
 gem "foreman" # Manage Procfile-based applications.
 
+group :development, :test do
+  gem "factory_bot_rails" # Factory Bot loves Rails
+  gem "faker" # A library for generating fake data such as names, addresses, and phone numbers.
+  gem "rspec-rails", "~> 4.0.0"
+end
+
 group :development do
   # A Ruby static code analyzer and formatter, based on the community Ruby style guide.
   gem "rubocop", require: false
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
+end
+
+group :test do
+  gem "fuubar" # The instafailing RSpec progress bar formatter.
+  gem "shoulda-matchers" # Simple one-liner tests for common Rails functionality
+  gem "rspec_junit_formatter" # RSpec results that your CI can read
+
+  gem "simplecov", require: false # Code coverage for Ruby 1.9+
+  gem "simplecov-cobertura", require: false # Ruby SimpleCov Cobertura Formatter
 end

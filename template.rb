@@ -39,6 +39,9 @@ def apply_template!
   binstubs = %w[bundler rubocop]
   run_with_clean_bundler_env "bundle binstubs #{binstubs.join(' ')} --force"
 
+  run_with_clean_bundler_env  "bin/rails generate rspec:install"
+  apply "spec/template.rb"
+
   template "rubocop.yml.tt", ".rubocop.yml"
   run_rubocop_autocorrections
 
