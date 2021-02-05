@@ -33,6 +33,8 @@ rails new -d postgresql --api -T -m https://gitlab.com/yi.zeng/rails-api-templat
 ## What's in additional to mattbrictson/rails-template?
 
 * Rails API Only + Many other changes
+* Gems
+  - [discard](https://github.com/jhawthorn/discard)
   - [dotenv-rails](https://github.com/bkeepers/dotenv)
   - [foreman](https://github.com/ddollar/foreman)
   - [Sidekiq](https://github.com/mperham/sidekiqs)
@@ -46,6 +48,7 @@ rails new -d postgresql --api -T -m https://gitlab.com/yi.zeng/rails-api-templat
   - Development
     - [annotate](https://github.com/ctran/annotate_models)
     - [bullet](https://github.com/flyerhzm/bullet)
+    - [letter_opener](https://github.com/ryanb/letter_opener)
     - [overcommit](https://github.com/sds/overcommit)
   - Testing
     - [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails)
@@ -55,3 +58,5 @@ rails new -d postgresql --api -T -m https://gitlab.com/yi.zeng/rails-api-templat
     - [rspec-sidekiq](https://github.com/rspec/rspec-rails)
     - [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers)
     - [simplecov](https://github.com/simplecov-ruby/simplecov)
+  - Production
+    - [rack-timeout](https://github.com/sharpstone/rack-timeout)

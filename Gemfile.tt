@@ -52,6 +52,7 @@ gem "airbrake" # The official Airbrake library for Ruby applications
 gem "logdna" # Ruby library for logging to LogDNA
 gem "newrelic_rpm" # New Relic RPM Ruby Agent
 
+gem "discard", "~> 1.2" # Soft deletes for ActiveRecord done right
 gem "dotenv-rails" # A Ruby gem to load environment variables from `.env`.
 gem "foreman" # Manage Procfile-based applications.
 
@@ -61,7 +62,11 @@ gem "sidekiq-scheduler" # Lightweight job scheduler extension for Sidekiq
 gem "sidekiq-unique-jobs", "~> 7.0.0.beta15" # Ensure uniqueness of your Sidekiq jobs
 
 group :development, :test do
+  gem "debase", "~> 0.2"
+  gem "ruby-debug-ide" # An interface which glues ruby-debug to IDEs
+
   gem "bullet" # Help to kill N+1 queries and unused eager loading.
+  gem "letter_opener" # Preview mail in the browser instead of sending.
   gem "factory_bot_rails" # Factory Bot loves Rails
   gem "faker" # A library for generating fake data such as names, addresses, and phone numbers.
   gem "rspec-rails", "~> 4.0.0"
@@ -87,4 +92,8 @@ group :test do
 
   gem "simplecov", require: false # Code coverage for Ruby 1.9+
   gem "simplecov-cobertura", require: false # Ruby SimpleCov Cobertura Formatter
+end
+
+group :production do
+  gem "rack-timeout" # Abort requests that are taking too long
 end
