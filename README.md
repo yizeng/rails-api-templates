@@ -42,6 +42,7 @@ rails new -d postgresql --api -T -m https://gitlab.com/yi.zeng/rails-api-templat
   - Development
     - [annotate](https://github.com/ctran/annotate_models)
     - [bullet](https://github.com/flyerhzm/bullet)
+    - [overcommit](https://github.com/sds/overcommit)
   - Testing
     - [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails)
     - [faker](https://github.com/faker-ruby/faker)

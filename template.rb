@@ -47,7 +47,11 @@ def apply_template!
   run_with_clean_bundler_env  "bin/rails generate rspec:install"
   apply "spec/template.rb"
 
+  template "overcommit.yml.tt", ".overcommit.yml"
   template "rubocop.yml.tt", ".rubocop.yml"
+
+  run_with_clean_bundler_env "overcommit --install"
+
   run_rubocop_autocorrections
 
   unless any_local_git_commits?
