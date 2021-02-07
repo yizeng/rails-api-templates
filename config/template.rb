@@ -22,6 +22,9 @@ apply "config/environments/development.rb"
 apply "config/environments/production.rb"
 apply "config/environments/test.rb"
 
+
+gsub_file "config/routes.rb", "post '/graphql'", 'post "/api/graphql"'
+
 insert_into_file "config/routes.rb", before: /^end/ do
   <<-'RUBY'
 

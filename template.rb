@@ -51,6 +51,7 @@ def apply_template!
   template "rubocop.yml.tt", ".rubocop.yml"
 
   run_with_clean_bundler_env "overcommit --install"
+  run_with_clean_bundler_env "bin/rails generate graphql:install"
 
   run_rubocop_autocorrections
 

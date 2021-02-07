@@ -61,6 +61,8 @@ gem "sidekiq-failures" # Keep track of Sidekiq failed jobs
 gem "sidekiq-scheduler" # Lightweight job scheduler extension for Sidekiq
 gem "sidekiq-unique-jobs", "~> 7.0.0.beta15" # Ensure uniqueness of your Sidekiq jobs
 
+gem "graphql" # Ruby implementation of GraphQL
+
 group :development, :test do
   gem "debase", "~> 0.2"
   gem "ruby-debug-ide" # An interface which glues ruby-debug to IDEs

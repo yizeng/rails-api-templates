@@ -54,7 +54,11 @@ insert_into_file "spec/spec_helper.rb", before: /^RSpec.configure/ do
     end
     add_filter("app/channels/application_cable/")
     add_filter("app/mailers/application_mailer.rb")
+    add_filter("app/controllers/graphql_controller.rb")
+    add_filter("app/graphql/types/node_type.rb")
+    add_filter(/\\S+base_(enum|union|interface|scalar).rb/)
 
+    add_group("GraphQL", "app/graphql")
     add_group("Services", "app/services")
   end
 
